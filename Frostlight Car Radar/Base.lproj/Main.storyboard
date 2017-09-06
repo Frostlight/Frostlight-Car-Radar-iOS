@@ -1,26 +1,115 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lj9-M2-8d7">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Frostlight Car Radar-->
+        <scene sceneID="pS2-mO-KNI">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6ez-FN-r0j" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="qSB-7d-eBe"/>
+                        <viewControllerLayoutGuide type="bottom" id="MhP-hH-TnY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="aT1-7y-Nnt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Frostlight Car Radar" id="Ohv-rc-VRU">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="ZZy-Ny-E5T"/>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YZP-KJ-udO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1495.2" y="296.40179910044981"/>
+        </scene>
+        <!--Frostlight Car Radar-->
+        <scene sceneID="f4z-Gh-ZhC">
+            <objects>
+                <viewController id="gMC-Ie-fCQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x5s-vo-jNK"/>
+                        <viewControllerLayoutGuide type="bottom" id="SPg-Lm-63Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HRf-Uo-fmi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Frostlight Car Radar" id="rvK-aD-L03">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="oRh-fz-Rxp"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qI5-0S-cX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1495.2" y="-358.4707646176912"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="TAq-01-Qxd">
+            <objects>
+                <tabBarController id="lj9-M2-8d7" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="oCr-5I-ySa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="b29-NG-rwz" kind="relationship" relationship="viewControllers" id="d5y-32-4br"/>
+                        <segue destination="2UR-hJ-S4F" kind="relationship" relationship="viewControllers" id="gdl-Yn-a6N"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GH6-lJ-GkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-396" y="-31"/>
+        </scene>
+        <!--Radar-->
+        <scene sceneID="w8o-PL-hTF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b29-NG-rwz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Radar" image="Radar" selectedImage="Radar" id="H6X-9g-Dge"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zgs-4z-FX5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gMC-Ie-fCQ" kind="relationship" relationship="rootViewController" id="TEY-ha-oKv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Yl-UK-B0w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="556" y="-358.4707646176912"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="Rhf-t9-cKs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2UR-hJ-S4F" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" selectedImage="Map" id="JyR-Sh-0eX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TIy-hS-qkT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6ez-FN-r0j" kind="relationship" relationship="rootViewController" id="Tlo-Js-tOx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K4B-qZ-Z1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="556" y="296.40179910044981"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Map" width="25" height="25"/>
+        <image name="Radar" width="25" height="25"/>
+    </resources>
 </document>

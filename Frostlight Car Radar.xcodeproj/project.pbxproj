@@ -345,6 +345,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = M822S4TQNS;
 				INFOPLIST_FILE = "Frostlight Car Radar/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.frostlight.FrostlightCarRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -358,6 +359,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = M822S4TQNS;
 				INFOPLIST_FILE = "Frostlight Car Radar/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.frostlight.FrostlightCarRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -414,6 +416,7 @@
 				BF3E1B5D1F5E76EB0003108A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BF3E1B5E1F5E76EB0003108A /* Build configuration list for PBXNativeTarget "Frostlight Car RadarTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +425,7 @@
 				BF3E1B601F5E76EB0003108A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
