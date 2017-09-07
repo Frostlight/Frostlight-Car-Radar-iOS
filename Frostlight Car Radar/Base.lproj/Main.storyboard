@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Frostlight Car Radar-->
+        <!--Frostlight Car Map-->
         <scene sceneID="pS2-mO-KNI">
             <objects>
                 <viewController id="6ez-FN-r0j" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Frostlight Car Radar" id="Ohv-rc-VRU">
+                    <navigationItem key="navigationItem" title="Frostlight Car Map" id="Ohv-rc-VRU">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="ZZy-Ny-E5T"/>
                     </navigationItem>
                 </viewController>
@@ -33,7 +33,7 @@
         <!--Frostlight Car Radar-->
         <scene sceneID="f4z-Gh-ZhC">
             <objects>
-                <viewController id="gMC-Ie-fCQ" sceneMemberID="viewController">
+                <viewController id="gMC-Ie-fCQ" customClass="RadarViewController" customModule="Frostlight_Car_Radar" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x5s-vo-jNK"/>
                         <viewControllerLayoutGuide type="bottom" id="SPg-Lm-63Y"/>
@@ -41,6 +41,20 @@
                     <view key="view" contentMode="scaleToFill" id="HRf-Uo-fmi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4KL-04-Fxe">
+                                <rect key="frame" x="103" y="333" width="169" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update Current Location"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This message shows the current location." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0E-SK-auz">
+                                <rect key="frame" x="31" y="304" width="318" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Frostlight Car Radar" id="rvK-aD-L03">

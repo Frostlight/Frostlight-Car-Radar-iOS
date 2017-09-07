@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF3E1B421F5E76EB0003108A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E1B411F5E76EB0003108A /* AppDelegate.swift */; };
-		BF3E1B441F5E76EB0003108A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E1B431F5E76EB0003108A /* ViewController.swift */; };
+		BF3E1B441F5E76EB0003108A /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E1B431F5E76EB0003108A /* RadarViewController.swift */; };
 		BF3E1B471F5E76EB0003108A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3E1B451F5E76EB0003108A /* Main.storyboard */; };
 		BF3E1B491F5E76EB0003108A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF3E1B481F5E76EB0003108A /* Assets.xcassets */; };
 		BF3E1B4C1F5E76EB0003108A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3E1B4A1F5E76EB0003108A /* LaunchScreen.storyboard */; };
@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		BF3E1B3E1F5E76EB0003108A /* Frostlight Car Radar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Frostlight Car Radar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3E1B411F5E76EB0003108A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BF3E1B431F5E76EB0003108A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BF3E1B431F5E76EB0003108A /* RadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
 		BF3E1B461F5E76EB0003108A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF3E1B481F5E76EB0003108A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF3E1B4B1F5E76EB0003108A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				BF3E1B411F5E76EB0003108A /* AppDelegate.swift */,
-				BF3E1B431F5E76EB0003108A /* ViewController.swift */,
+				BF3E1B431F5E76EB0003108A /* RadarViewController.swift */,
 				BF3E1B451F5E76EB0003108A /* Main.storyboard */,
 				BF3E1B481F5E76EB0003108A /* Assets.xcassets */,
 				BF3E1B4A1F5E76EB0003108A /* LaunchScreen.storyboard */,
@@ -201,7 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF3E1B441F5E76EB0003108A /* ViewController.swift in Sources */,
+				BF3E1B441F5E76EB0003108A /* RadarViewController.swift in Sources */,
 				BF3E1B421F5E76EB0003108A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
