@@ -33,7 +33,7 @@
         <!--Frostlight Car Radar-->
         <scene sceneID="f4z-Gh-ZhC">
             <objects>
-                <viewController id="gMC-Ie-fCQ" customClass="RadarViewController" customModule="Frostlight_Car_Radar" sceneMemberID="viewController">
+                <viewController id="gMC-Ie-fCQ" customClass="RadarViewController" customModule="Frostlight_Car_Radar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x5s-vo-jNK"/>
                         <viewControllerLayoutGuide type="bottom" id="SPg-Lm-63Y"/>
@@ -46,9 +46,12 @@
                                 <rect key="frame" x="103" y="333" width="169" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Update Current Location"/>
+                                <connections>
+                                    <action selector="updateLocationButton:" destination="gMC-Ie-fCQ" eventType="touchUpInside" id="me8-Zd-f5F"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This message shows the current location." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0E-SK-auz">
-                                <rect key="frame" x="31" y="304" width="318" height="21"/>
+                                <rect key="frame" x="28" y="304" width="318" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -60,6 +63,9 @@
                     <navigationItem key="navigationItem" title="Frostlight Car Radar" id="rvK-aD-L03">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="oRh-fz-Rxp"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="currentLocationLabel" destination="w0E-SK-auz" id="knh-go-kj9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qI5-0S-cX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

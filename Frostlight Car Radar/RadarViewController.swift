@@ -9,7 +9,8 @@
 import UIKit
 
 class RadarViewController: UIViewController {
-
+    @IBOutlet weak var currentLocationLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -29,5 +30,9 @@ class RadarViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+    @IBAction func updateLocationButton(_ sender: UIButton) {
+        currentLocationLabel.text = "The location has been updated."
+    }
 }
 
