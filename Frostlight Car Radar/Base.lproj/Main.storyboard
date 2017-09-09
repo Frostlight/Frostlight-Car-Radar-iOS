@@ -12,7 +12,7 @@
         <!--Frostlight Car Map-->
         <scene sceneID="pS2-mO-KNI">
             <objects>
-                <viewController id="6ez-FN-r0j" sceneMemberID="viewController">
+                <viewController id="6ez-FN-r0j" customClass="MapViewController" customModule="Frostlight_Car_Radar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qSB-7d-eBe"/>
                         <viewControllerLayoutGuide type="bottom" id="MhP-hH-TnY"/>
@@ -20,15 +20,45 @@
                     <view key="view" contentMode="scaleToFill" id="aT1-7y-Nnt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5D-zn-nfg">
+                                <rect key="frame" x="-0.5" y="574" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Park Here" id="Ple-Dg-0PK"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jIp-hv-lCo"/>
+                                    <barButtonItem title="Clear" id="Lhb-eC-Qni"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9VD-vJ-eeH"/>
+                                    <barButtonItem title="Save" id="KF4-gL-U0V"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mxN-6Q-yZl"/>
+                                    <barButtonItem title="Load" id="Ir9-Y3-v6T"/>
+                                </items>
+                            </toolbar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xP-b6-rCc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="510"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5xP-b6-rCc" secondAttribute="trailing" id="0pc-GD-pNh"/>
+                            <constraint firstItem="C5D-zn-nfg" firstAttribute="top" secondItem="5xP-b6-rCc" secondAttribute="bottom" id="2cg-rO-COA"/>
+                            <constraint firstItem="5xP-b6-rCc" firstAttribute="leading" secondItem="aT1-7y-Nnt" secondAttribute="leading" id="4ur-9s-T8s"/>
+                            <constraint firstItem="5xP-b6-rCc" firstAttribute="top" secondItem="qSB-7d-eBe" secondAttribute="bottom" id="ANZ-WG-BqV"/>
+                            <constraint firstItem="C5D-zn-nfg" firstAttribute="top" secondItem="5xP-b6-rCc" secondAttribute="bottom" id="NWa-57-FPx"/>
+                            <constraint firstItem="C5D-zn-nfg" firstAttribute="leading" secondItem="aT1-7y-Nnt" secondAttribute="leading" id="UTa-pd-oG0"/>
+                            <constraint firstAttribute="trailing" secondItem="C5D-zn-nfg" secondAttribute="trailing" id="luj-Wq-xLh"/>
+                            <constraint firstItem="MhP-hH-TnY" firstAttribute="top" secondItem="C5D-zn-nfg" secondAttribute="bottom" id="s7w-vL-elK"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Frostlight Car Map" id="Ohv-rc-VRU">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="ZZy-Ny-E5T"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="map" destination="5xP-b6-rCc" id="6Gm-6J-eHI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZP-KJ-udO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1495.2" y="296.40179910044981"/>
+            <point key="canvasLocation" x="1494.2028985507247" y="295.10869565217394"/>
         </scene>
         <!--Frostlight Car Radar-->
         <scene sceneID="f4z-Gh-ZhC">
@@ -50,8 +80,21 @@
                                     <action selector="updateLocationButton:" destination="gMC-Ie-fCQ" eventType="touchUpInside" id="me8-Zd-f5F"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This message shows the current location." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0E-SK-auz">
-                                <rect key="frame" x="28" y="304" width="318" height="21"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlJ-y9-HMy">
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Park Here" id="frn-c8-J7u"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="t7e-I8-ajG"/>
+                                    <barButtonItem title="Clear" id="Ci2-9X-Hv2"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="kwh-T4-ayS"/>
+                                    <barButtonItem title="Save" id="a0m-s6-zep"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Tfj-Ij-mh0"/>
+                                    <barButtonItem title="Load" id="yEG-n4-hFW"/>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This message shows the current location." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0E-SK-auz">
+                                <rect key="frame" x="29" y="304" width="317.5" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
