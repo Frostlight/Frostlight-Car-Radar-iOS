@@ -21,6 +21,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         // Set up MapViewController as a CLLocationManager delegate
+        // TODO: Seperate common functions into a utility class
         if (CLLocationManager.locationServicesEnabled()) {
             locationManager = CLLocationManager()
             locationManager.delegate = self
@@ -28,6 +29,8 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+        
+        // TODO: Load saved location
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +47,24 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Actions
     @IBAction func updateLocationButton(_ sender: UIButton) {
-        currentLocationLabel.text = "The location has been updated."
+        currentLocationLabel.text = "Latitude: \(userCoordinate.latitude), Longtiude: \(userCoordinate.longitude)"
+    }
+    
+    // TODO: Save user's current location
+    @IBAction func parkHereButton(_ sender: UIBarButtonItem) {
+        // Save as local variable and to file
+    }
+    
+    // TODO: Clear user's current location
+    @IBAction func clearButton(_ sender: UIBarButtonItem) {
+    }
+    
+    // TODO: Backup user's current saved location into a saved list
+    @IBAction func saveButton(_ sender: UIBarButtonItem) {
+    }
+    
+    // TODO: Restore one of the saved locations onto the view
+    @IBAction func loadButton(_ sender: UIBarButtonItem) {
     }
 }
 

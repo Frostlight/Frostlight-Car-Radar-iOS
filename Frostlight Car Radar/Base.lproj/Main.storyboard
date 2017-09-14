@@ -84,13 +84,29 @@
                                 <rect key="frame" x="0.0" y="574" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Park Here" id="frn-c8-J7u"/>
+                                    <barButtonItem title="Park Here" id="frn-c8-J7u">
+                                        <connections>
+                                            <action selector="parkHereButton:" destination="gMC-Ie-fCQ" id="cOM-PH-kOZ"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="t7e-I8-ajG"/>
-                                    <barButtonItem title="Clear" id="Ci2-9X-Hv2"/>
+                                    <barButtonItem title="Clear" id="Ci2-9X-Hv2">
+                                        <connections>
+                                            <action selector="clearButton:" destination="gMC-Ie-fCQ" id="4sT-bk-epr"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="kwh-T4-ayS"/>
-                                    <barButtonItem title="Save" id="a0m-s6-zep"/>
+                                    <barButtonItem title="Save" id="a0m-s6-zep">
+                                        <connections>
+                                            <action selector="saveButton:" destination="gMC-Ie-fCQ" id="pmv-ot-JEC"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Tfj-Ij-mh0"/>
-                                    <barButtonItem title="Load" id="yEG-n4-hFW"/>
+                                    <barButtonItem title="Load" id="yEG-n4-hFW">
+                                        <connections>
+                                            <action selector="loadButton:" destination="gMC-Ie-fCQ" id="be4-w3-CP9"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This message shows the current location." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0E-SK-auz">
@@ -108,6 +124,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentLocationLabel" destination="w0E-SK-auz" id="knh-go-kj9"/>
+                        <outlet property="saveButton" destination="a0m-s6-zep" id="IEp-bQ-ORw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qI5-0S-cX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
