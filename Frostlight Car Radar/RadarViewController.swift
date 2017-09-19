@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 class RadarViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Properties
@@ -17,17 +18,20 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     // Location of user
     var userCoordinate: CLLocationCoordinate2D!
     
+    // Reference to the map ViewController
+    var mapViewController: MapViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up the reference to mapViewController
+        let mapNavigationController = self.tabBarController?.viewControllers?[1] as! UINavigationController
+        mapViewController = mapNavigationController.topViewController as! MapViewController
+        
         // Set up MapViewController as a CLLocationManager delegate
-        // TODO: Seperate common functions into a utility class
         if (CLLocationManager.locationServicesEnabled()) {
-            locationManager = CLLocationManager()
+            Utility.setUpLocationManager(locationManager: &locationManager)
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
         }
         
         // TODO: Load saved location
@@ -43,6 +47,12 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation
         userCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
+        // Update map on MapViewController
+        if mapViewController.isViewLoaded {
+            let region = MKCoordinateRegion(center: userCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            mapViewController.map.setRegion(region, animated: true)
+        }
     }
     
     // MARK: - Actions

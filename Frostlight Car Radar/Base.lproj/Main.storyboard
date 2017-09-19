@@ -124,7 +124,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentLocationLabel" destination="w0E-SK-auz" id="knh-go-kj9"/>
-                        <outlet property="saveButton" destination="a0m-s6-zep" id="IEp-bQ-ORw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qI5-0S-cX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
