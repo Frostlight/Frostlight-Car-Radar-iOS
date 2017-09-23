@@ -16,9 +16,6 @@ class MapViewController: UIViewController {
     
     // Reference to the map ViewController
     var radarViewController: RadarViewController!
-    
-    // Location of user
-    var userCoordinate: CLLocationCoordinate2D!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +24,22 @@ class MapViewController: UIViewController {
         let radarNavigationController = self.tabBarController?.viewControllers?[0] as! UINavigationController
         radarViewController = radarNavigationController.topViewController as! RadarViewController
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: - Actions
+    // Just call the corresponding actions on RadarViewController to handle these
+    @IBAction func parkHereButton(_ sender: UIBarButtonItem) {
+        radarViewController.parkHereButton(sender)
+    }
+    
+    @IBAction func clearButton(_ sender: UIBarButtonItem) {
+        radarViewController.clearButton(sender)
+    }
+    
+    @IBAction func saveButton(_ sender: UIBarButtonItem) {
+        radarViewController.saveButton(sender)
+    }
+    
+    @IBAction func loadButton(_ sender: UIBarButtonItem) {
+        radarViewController.loadButton(sender)
     }
 }

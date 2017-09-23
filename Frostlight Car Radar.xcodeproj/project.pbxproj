@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF3235F41F760D0700C05556 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3235F31F760D0700C05556 /* Locations.swift */; };
+		BF3235F51F763E5E00C05556 /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E1B431F5E76EB0003108A /* RadarViewController.swift */; };
 		BF3E1B421F5E76EB0003108A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E1B411F5E76EB0003108A /* AppDelegate.swift */; };
 		BF3E1B471F5E76EB0003108A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3E1B451F5E76EB0003108A /* Main.storyboard */; };
 		BF3E1B491F5E76EB0003108A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF3E1B481F5E76EB0003108A /* Assets.xcassets */; };
 		BF3E1B4C1F5E76EB0003108A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3E1B4A1F5E76EB0003108A /* LaunchScreen.storyboard */; };
 		BF3E1B571F5E76EB0003108A /* Frostlight_Car_RadarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E1B561F5E76EB0003108A /* Frostlight_Car_RadarTests.swift */; };
-		BF4A653F1F61D26D00FCCBF3 /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E1B431F5E76EB0003108A /* RadarViewController.swift */; };
 		BF4A65421F61E61800FCCBF3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4A65401F61E58000FCCBF3 /* MapViewController.swift */; };
 		BF839A501F6B0C26004D828D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF839A4F1F6B0C26004D828D /* Utility.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF3235F31F760D0700C05556 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		BF3E1B3E1F5E76EB0003108A /* Frostlight Car Radar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Frostlight Car Radar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3E1B411F5E76EB0003108A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF3E1B431F5E76EB0003108A /* RadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				BF3E1B481F5E76EB0003108A /* Assets.xcassets */,
 				BF3E1B4A1F5E76EB0003108A /* LaunchScreen.storyboard */,
 				BF3E1B4D1F5E76EB0003108A /* Info.plist */,
+				BF3235F31F760D0700C05556 /* Locations.swift */,
 			);
 			path = "Frostlight Car Radar";
 			sourceTree = "<group>";
@@ -209,8 +212,9 @@
 			files = (
 				BF839A501F6B0C26004D828D /* Utility.swift in Sources */,
 				BF3E1B421F5E76EB0003108A /* AppDelegate.swift in Sources */,
+				BF3235F41F760D0700C05556 /* Locations.swift in Sources */,
+				BF3235F51F763E5E00C05556 /* RadarViewController.swift in Sources */,
 				BF4A65421F61E61800FCCBF3 /* MapViewController.swift in Sources */,
-				BF4A653F1F61D26D00FCCBF3 /* RadarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
