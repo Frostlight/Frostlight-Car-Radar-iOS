@@ -68,10 +68,16 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     
     // TODO: Save user's current location
     @IBAction func parkHereButton(_ sender: UIBarButtonItem) {
-        // Save as local variable and to file
         if #available(iOS 10.0, *) {
             os_log("Park here button pressed.", type: .default)
         }
+        
+        // Save as local variable and to file
+        savedLocation = userCoordinate
+        
+        // Save to file
+        saveLocation()
+        savedLocationLabel.text = "Latitude: \(savedLocation.latitude), Longitude: \(savedLocation.longitude)"
     }
     
     // TODO: Clear user's current location
@@ -86,11 +92,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         if #available(iOS 10.0, *) {
             os_log("Save button pressed.", type: .default)
         }
-        savedLocation = userCoordinate
         
-        // Save to file
-        saveLocation()
-        savedLocationLabel.text = "Latitude: \(savedLocation.latitude), Longitude: \(savedLocation.longitude)"
     }
     
     // TODO: Restore one of the saved locations onto the view
