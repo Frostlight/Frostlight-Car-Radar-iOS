@@ -13,6 +13,7 @@ import MapKit
 class MapViewController: UIViewController {
     //MARK: - Properties
     @IBOutlet weak var map: MKMapView!
+    var savedLocationAnnotation: MKPointAnnotation!
     
     // Reference to the map ViewController
     var radarViewController: RadarViewController!
@@ -23,6 +24,16 @@ class MapViewController: UIViewController {
         // Set up the reference to radarViewController
         let radarNavigationController = self.tabBarController?.viewControllers?[0] as! UINavigationController
         radarViewController = radarNavigationController.topViewController as! RadarViewController
+        
+        // Set up saved annotation
+        savedLocationAnnotation = MKPointAnnotation()
+        savedLocationAnnotation.title = "Parked Location"
+        
+        // Load saved location and mark annotation if it exists
+        if let location = Utility.loadLocationFromFile() {
+            savedLocationAnnotation.coordinate = location
+            map.addAnnotation(savedLocationAnnotation)
+        }
     }
     
     // MARK: - Actions

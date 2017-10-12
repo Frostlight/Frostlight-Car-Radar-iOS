@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5D-zn-nfg">
-                                <rect key="frame" x="-0.5" y="574" width="375" height="44"/>
+                                <rect key="frame" x="-0.5" y="574" width="375.5" height="44"/>
                                 <items>
                                     <barButtonItem title="Park Here" id="Ple-Dg-0PK">
                                         <connections>
@@ -88,14 +90,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4KL-04-Fxe">
-                                <rect key="frame" x="103" y="333" width="169" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Update Current Location"/>
-                                <connections>
-                                    <action selector="updateLocationButton:" destination="gMC-Ie-fCQ" eventType="touchUpInside" id="me8-Zd-f5F"/>
-                                </connections>
-                            </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlJ-y9-HMy">
                                 <rect key="frame" x="0.0" y="574" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -125,34 +119,25 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This message shows the current location." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0E-SK-auz">
-                                <rect key="frame" x="29" y="304" width="317.5" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saved Location: Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezf-DM-SFo">
-                                <rect key="frame" x="16" y="275" width="331" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompassArrow" translatesAutoresizingMaskIntoConstraints="NO" id="koD-j1-oA2">
+                                <rect key="frame" x="19" y="146" width="337.5" height="375"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="koD-j1-oA2" firstAttribute="centerX" secondItem="HRf-Uo-fmi" secondAttribute="centerX" id="1YQ-fD-3s6"/>
+                            <constraint firstItem="koD-j1-oA2" firstAttribute="width" secondItem="HRf-Uo-fmi" secondAttribute="width" multiplier="0.9" id="4Ab-dP-kHK"/>
+                            <constraint firstItem="koD-j1-oA2" firstAttribute="centerY" secondItem="HRf-Uo-fmi" secondAttribute="centerY" id="81R-Ze-rHK"/>
+                            <constraint firstItem="koD-j1-oA2" firstAttribute="height" secondItem="HRf-Uo-fmi" secondAttribute="width" id="Fr9-lx-Ul6"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Frostlight Car Radar" id="rvK-aD-L03">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="oRh-fz-Rxp"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="currentLocationLabel" destination="w0E-SK-auz" id="knh-go-kj9"/>
-                        <outlet property="savedLocationLabel" destination="ezf-DM-SFo" id="J2p-5s-oZO"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qI5-0S-cX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1495.2" y="-358.4707646176912"/>
+            <point key="canvasLocation" x="1492.5" y="-360.21126760563379"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="TAq-01-Qxd">
@@ -212,6 +197,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CompassArrow" width="800" height="800"/>
         <image name="Map" width="25" height="25"/>
         <image name="Radar" width="25" height="25"/>
     </resources>

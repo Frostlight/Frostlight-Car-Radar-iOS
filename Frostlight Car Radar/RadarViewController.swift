@@ -42,9 +42,9 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // Load saved location
-        if let location = loadLocation() {
+        if let location = Utility.loadLocationFromFile() {
             savedLocation = location
-            savedLocationLabel.text = "Latitude: \(savedLocation.latitude), Longitude: \(savedLocation.longitude)"
+            //savedLocationLabel.text = "Latitude: \(savedLocation.latitude), Longitude: \(savedLocation.longitude)"
         }
     }
     
@@ -59,14 +59,19 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
             let region = MKCoordinateRegion(center: userCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             mapViewController.map.setRegion(region, animated: true)
         }
+        
+        // TODO: Calculate distance and direction from current location to marked location
+        
+        
+        // TODO: Add compass image and rotate accordingly
     }
     
     // MARK: - Actions
-    @IBAction func updateLocationButton(_ sender: UIButton) {
+    /*@IBAction func updateLocationButton(_ sender: UIButton) {
         currentLocationLabel.text = "Latitude: \(userCoordinate.latitude), Longtiude: \(userCoordinate.longitude)"
-    }
+    }*/
     
-    // TODO: Save user's current location
+    // Save user's current location
     @IBAction func parkHereButton(_ sender: UIBarButtonItem) {
         if #available(iOS 10.0, *) {
             os_log("Park here button pressed.", type: .default)
@@ -76,15 +81,29 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         savedLocation = userCoordinate
         
         // Save to file
-        saveLocation()
+        saveLocationToFile()
         savedLocationLabel.text = "Latitude: \(savedLocation.latitude), Longitude: \(savedLocation.longitude)"
+        
+        // Set savedLocationAnnotation in RadarView and mark current location on map
+        mapViewController.savedLocationAnnotation.coordinate = savedLocation
+        mapViewController.map.addAnnotation(mapViewController.savedLocationAnnotation)
     }
     
-    // TODO: Clear user's current location
+    // Clear user's current location
     @IBAction func clearButton(_ sender: UIBarButtonItem) {
         if #available(iOS 10.0, *) {
             os_log("Clear button pressed.", type: .default)
         }
+        
+        // Remove annotation from map
+        mapViewController.map.removeAnnotation(mapViewController.savedLocationAnnotation)
+        
+        // Remove local saved location
+        savedLocation = nil
+        
+        // Delete file
+        deleteLocationFromFile()
+        //savedLocationLabel.text = "Location: Unknown"
     }
     
     // TODO: Backup user's current saved location into a saved list
@@ -104,7 +123,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Private Functions
     // Save the current location into file
-    private func saveLocation() {
+    private func saveLocationToFile() {
         // Switch to CLLocation format for encoding
         let location = CLLocation(latitude: userCoordinate.latitude, longitude: userCoordinate.longitude)
         
@@ -119,11 +138,17 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    // Load the current tracked location from file
-    private func loadLocation() -> CLLocationCoordinate2D? {
-        let location = NSKeyedUnarchiver.unarchiveObject(withFile: Utility.ActiveLocationArchiveURL.path) as? CLLocation
-        
-        return location?.coordinate
+    // Deletes the location file
+    private func deleteLocationFromFile() {
+        // Create a FileManager instance
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: Utility.ActiveLocationArchiveURL.path)
+        } catch {
+            if #available(iOS 10.0, *) {
+                os_log("Failed to clear location.", type: .default)
+            }
+        }
     }
 }
 

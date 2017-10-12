@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import os.log
 
 class Utility {
     
@@ -26,5 +27,9 @@ class Utility {
         locationManager.startUpdatingLocation()
     }
     
-    // Update location when location changes
+    // Load the current tracked location from file
+    static func loadLocationFromFile() -> CLLocationCoordinate2D? {
+        let location = NSKeyedUnarchiver.unarchiveObject(withFile: ActiveLocationArchiveURL.path) as? CLLocation
+        return location?.coordinate
+    }
 }
