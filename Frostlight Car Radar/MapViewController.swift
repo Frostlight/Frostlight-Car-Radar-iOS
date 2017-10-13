@@ -11,12 +11,13 @@ import CoreLocation
 import MapKit
 
 class MapViewController: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
+    // Outlets
     @IBOutlet weak var map: MKMapView!
-    var savedLocationAnnotation: MKPointAnnotation!
     
-    // Reference to the map ViewController
-    var radarViewController: RadarViewController!
+    // Local Properties
+    var savedLocationAnnotation: MKPointAnnotation!
+    var radarViewController: RadarViewController! // Reference to the map ViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,7 @@ class MapViewController: UIViewController {
         
         // Load saved location and mark annotation if it exists
         if let location = Utility.loadLocationFromFile() {
-            savedLocationAnnotation.coordinate = location
+            savedLocationAnnotation.coordinate = location.coordinate
             map.addAnnotation(savedLocationAnnotation)
         }
     }

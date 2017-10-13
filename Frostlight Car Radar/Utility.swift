@@ -25,11 +25,12 @@ class Utility {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
     }
     
     // Load the current tracked location from file
-    static func loadLocationFromFile() -> CLLocationCoordinate2D? {
+    static func loadLocationFromFile() -> CLLocation? {
         let location = NSKeyedUnarchiver.unarchiveObject(withFile: ActiveLocationArchiveURL.path) as? CLLocation
-        return location?.coordinate
+        return location
     }
 }

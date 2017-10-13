@@ -11,16 +11,58 @@ import CoreLocation
 import MapKit
 import os.log
 
+// MARK: - Extensions
+// Credits to Fabrizio Bartolomucci @ Stack Overflow
+public extension CLLocation {
+    func DegreesToRadians(_ degrees: Double ) -> Double {
+        return degrees * .pi / 180
+    }
+    
+    func RadiansToDegrees(_ radians: Double) -> Double {
+        return radians * 180 / .pi
+    }
+    
+    func bearingToLocationRadian(_ destinationLocation: CLLocation) -> Double {
+        let lat1 = DegreesToRadians(self.coordinate.latitude)
+        let lon1 = DegreesToRadians(self.coordinate.longitude)
+        
+        let lat2 = DegreesToRadians(destinationLocation.coordinate.latitude);
+        let lon2 = DegreesToRadians(destinationLocation.coordinate.longitude);
+        
+        let dLon = lon2 - lon1
+        
+        let y = sin(dLon) * cos(lat2);
+        let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
+        let radiansBearing = atan2(y, x)
+        
+        return radiansBearing
+    }
+    
+    func bearingToLocationDegrees(destinationLocation: CLLocation) -> Double{
+        return   RadiansToDegrees(bearingToLocationRadian(destinationLocation))
+    }
+}
+
+extension CGFloat {
+    var degreesToRadians: CGFloat { return self * .pi / 180 }
+    var radiansToDegrees: CGFloat { return self * 180 / .pi }
+}
+
 class RadarViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Properties
     // Outlets
     @IBOutlet weak var compassImageView: UIImageView! // Image of "compass"
+    @IBOutlet weak var distanceLabel: UILabel!
     
     // Local Properties
     var locationManager: CLLocationManager!
-    var userCoordinate: CLLocationCoordinate2D! // Current Location of user
-    var savedLocation: CLLocationCoordinate2D! // Saved location
+    var userLocation: CLLocation! // Current Location of user
+    var savedLocation: CLLocation! // Saved location
     var mapViewController: MapViewController! // Reference to the map ViewController
+    
+    // Computed Properties
+    var locationBearing: CGFloat {
+        return CGFloat(userLocation.bearingToLocationRadian(self.savedLocation)) }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +80,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         // Load saved location
         if let location = Utility.loadLocationFromFile() {
             savedLocation = location
-            //savedLocationLabel.text = "Latitude: \(savedLocation.latitude), Longitude: \(savedLocation.longitude)"
+            distanceLabel.text = "Initializing"
         }
     }
     
@@ -46,28 +88,38 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     // Update current location on map when location changes
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation
-        userCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        userLocation = location
         
         // Update map on MapViewController
         if mapViewController.isViewLoaded {
-            let region = MKCoordinateRegion(center: userCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            let region = MKCoordinateRegion(center: userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             mapViewController.map.setRegion(region, animated: true)
         }
         
         // TODO: Calculate distance and direction from current location to marked location
-        
-        
+        if savedLocation != nil {
+            let distanceInMeters = savedLocation.distance(from: userLocation)
+            distanceLabel.text = String(format: "%.2f m", distanceInMeters)
+        }
     }
     
     // Update compass image to match the new heading
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        // Rotate the compass image accordingly
-        UIView.animate(withDuration: 0.5) {
-            let angle = newHeading.trueHeading
-            let radians = CGFloat(-angle / 180.0 * .pi)
-            self.compassImageView.transform = CGAffineTransform(rotationAngle: radians)
+        if #available(iOS 10.0, *) {
+            os_log("Angle changed.", type: .default)
         }
-
+        
+        func computeAngle(newAngle: CGFloat) -> CGFloat {
+            let originalHeading = self.locationBearing - newAngle.degreesToRadians
+            return originalHeading
+        }
+        
+        // Rotate the compass image accordingly
+        if self.savedLocation != nil {
+            UIView.animate(withDuration: 0.5) {
+                self.compassImageView.transform = CGAffineTransform(rotationAngle: computeAngle(newAngle: CGFloat(newHeading.trueHeading)))
+            }
+        }
     }
     
     // MARK: - Actions
@@ -82,7 +134,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // Save as local variable and to file
-        savedLocation = userCoordinate
+        savedLocation = userLocation
         
         // Save to file
         saveLocationToFile()
@@ -90,7 +142,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         
         // Set savedLocationAnnotation in MapView and mark current location on map
         if mapViewController.isViewLoaded {
-            mapViewController.savedLocationAnnotation.coordinate = savedLocation
+            mapViewController.savedLocationAnnotation.coordinate = savedLocation.coordinate
             mapViewController.map.addAnnotation(mapViewController.savedLocationAnnotation)
         }
     }
@@ -101,15 +153,18 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
             os_log("Clear button pressed.", type: .default)
         }
         
-        // Remove annotation from map
-        mapViewController.map.removeAnnotation(mapViewController.savedLocationAnnotation)
-        
+        // Remove annotation from map (if it exists)
+        if mapViewController.isViewLoaded {
+            mapViewController.map.removeAnnotation(mapViewController.savedLocationAnnotation)
+        }
+            
         // Remove local saved location
         savedLocation = nil
         
         // Delete file
         deleteLocationFromFile()
         //savedLocationLabel.text = "Location: Unknown"
+        distanceLabel.text = "Not Parked"
     }
     
     // TODO: Backup user's current saved location into a saved list
@@ -130,10 +185,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Private Functions
     // Save the current location into file
     private func saveLocationToFile() {
-        // Switch to CLLocation format for encoding
-        let location = CLLocation(latitude: userCoordinate.latitude, longitude: userCoordinate.longitude)
-        
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(location, toFile: Utility.ActiveLocationArchiveURL.path)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(userLocation, toFile: Utility.ActiveLocationArchiveURL.path)
         if #available(iOS 10.0, *) {
             if isSuccessfulSave {
                 os_log("Successfully saved location.", type: .default)

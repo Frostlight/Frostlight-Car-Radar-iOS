@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lj9-M2-8d7">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="MhP-hH-TnY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aT1-7y-Nnt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5D-zn-nfg" userLabel="Bottom Toolbar">
-                                <rect key="frame" x="-0.5" y="574" width="375.5" height="44"/>
+                                <rect key="frame" x="-0.66666666666665719" y="643" width="414.66666666666663" height="44"/>
                                 <items>
                                     <barButtonItem title="Park Here" id="Ple-Dg-0PK">
                                         <connections>
@@ -52,10 +51,10 @@
                                 </items>
                             </toolbar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xP-b6-rCc">
-                                <rect key="frame" x="0.0" y="108" width="375" height="466"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="535"/>
                             </mapView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NrS-iz-rTb" userLabel="Top Toolbar">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
                                 <items>
                                     <barButtonItem title="Item" id="IKA-9g-Bal"/>
                                 </items>
@@ -95,11 +94,11 @@
                         <viewControllerLayoutGuide type="bottom" id="SPg-Lm-63Y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HRf-Uo-fmi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlJ-y9-HMy">
-                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="643" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Park Here" id="frn-c8-J7u">
@@ -128,23 +127,34 @@
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompassArrow" translatesAutoresizingMaskIntoConstraints="NO" id="koD-j1-oA2">
-                                <rect key="frame" x="19" y="146" width="337.5" height="375"/>
+                                <rect key="frame" x="41.333333333333343" y="202.33333333333337" width="331.33333333333337" height="331.33333333333326"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGV-Gx-28C">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Item" id="hU9-4r-Mxy"/>
-                                </items>
+                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="a1W-uZ-OV4"/>
+                                </constraints>
+                                <items/>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Parked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sS7-Qa-jix">
+                                <rect key="frame" x="0.0" y="107.99999999999999" width="414" height="73.666666666666643"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="52"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="koD-j1-oA2" firstAttribute="centerX" secondItem="HRf-Uo-fmi" secondAttribute="centerX" id="1YQ-fD-3s6"/>
-                            <constraint firstItem="koD-j1-oA2" firstAttribute="width" secondItem="HRf-Uo-fmi" secondAttribute="width" multiplier="0.9" id="4Ab-dP-kHK"/>
+                            <constraint firstItem="koD-j1-oA2" firstAttribute="width" secondItem="HRf-Uo-fmi" secondAttribute="width" multiplier="0.8" id="4Ab-dP-kHK"/>
                             <constraint firstItem="koD-j1-oA2" firstAttribute="centerY" secondItem="HRf-Uo-fmi" secondAttribute="centerY" id="81R-Ze-rHK"/>
                             <constraint firstAttribute="trailing" secondItem="mGV-Gx-28C" secondAttribute="trailing" id="EZ3-Ws-ckt"/>
-                            <constraint firstItem="koD-j1-oA2" firstAttribute="height" secondItem="HRf-Uo-fmi" secondAttribute="width" id="Fr9-lx-Ul6"/>
+                            <constraint firstItem="sS7-Qa-jix" firstAttribute="height" secondItem="HRf-Uo-fmi" secondAttribute="height" multiplier="0.1" id="FJf-PE-d7X"/>
+                            <constraint firstItem="koD-j1-oA2" firstAttribute="height" secondItem="HRf-Uo-fmi" secondAttribute="height" multiplier="0.45" id="Fr9-lx-Ul6"/>
+                            <constraint firstItem="sS7-Qa-jix" firstAttribute="leading" secondItem="HRf-Uo-fmi" secondAttribute="leading" id="Hgc-uL-8fP"/>
                             <constraint firstItem="mGV-Gx-28C" firstAttribute="leading" secondItem="HRf-Uo-fmi" secondAttribute="leading" id="IMC-Gt-mqF"/>
+                            <constraint firstItem="sS7-Qa-jix" firstAttribute="top" secondItem="mGV-Gx-28C" secondAttribute="bottom" id="Mxr-SW-c4p"/>
+                            <constraint firstAttribute="trailing" secondItem="sS7-Qa-jix" secondAttribute="trailing" id="dcg-yi-bod"/>
                             <constraint firstItem="mGV-Gx-28C" firstAttribute="top" secondItem="x5s-vo-jNK" secondAttribute="bottom" id="k1p-X6-7wM"/>
                         </constraints>
                     </view>
@@ -153,11 +163,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="compassImageView" destination="koD-j1-oA2" id="aGY-T1-VBr"/>
+                        <outlet property="distanceLabel" destination="sS7-Qa-jix" id="oEQ-ds-Due"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qI5-0S-cX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1492.5" y="-360.21126760563379"/>
+            <point key="canvasLocation" x="1492" y="-360.2698650674663"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="TAq-01-Qxd">
@@ -184,7 +195,7 @@
                     <tabBarItem key="tabBarItem" title="Radar" image="Radar" selectedImage="Radar" id="H6X-9g-Dge"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zgs-4z-FX5">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -203,7 +214,7 @@
                     <tabBarItem key="tabBarItem" title="Map" image="Map" selectedImage="Map" id="JyR-Sh-0eX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TIy-hS-qkT">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
