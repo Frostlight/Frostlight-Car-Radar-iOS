@@ -12,21 +12,15 @@ import MapKit
 import os.log
 
 class RadarViewController: UIViewController, CLLocationManagerDelegate {
-    
     // MARK: - Properties
-    @IBOutlet weak var currentLocationLabel: UILabel!
-    @IBOutlet weak var savedLocationLabel: UILabel!
+    // Outlets
+    @IBOutlet weak var compassImageView: UIImageView! // Image of "compass"
     
+    // Local Properties
     var locationManager: CLLocationManager!
-    
-    // Location of user
-    var userCoordinate: CLLocationCoordinate2D!
-    
-    // Saved location
-    var savedLocation: CLLocationCoordinate2D!
-    
-    // Reference to the map ViewController
-    var mapViewController: MapViewController!
+    var userCoordinate: CLLocationCoordinate2D! // Current Location of user
+    var savedLocation: CLLocationCoordinate2D! // Saved location
+    var mapViewController: MapViewController! // Reference to the map ViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +57,17 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         // TODO: Calculate distance and direction from current location to marked location
         
         
-        // TODO: Add compass image and rotate accordingly
+    }
+    
+    // Update compass image to match the new heading
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        // Rotate the compass image accordingly
+        UIView.animate(withDuration: 0.5) {
+            let angle = newHeading.trueHeading
+            let radians = CGFloat(-angle / 180.0 * .pi)
+            self.compassImageView.transform = CGAffineTransform(rotationAngle: radians)
+        }
+
     }
     
     // MARK: - Actions
@@ -82,11 +86,13 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         
         // Save to file
         saveLocationToFile()
-        savedLocationLabel.text = "Latitude: \(savedLocation.latitude), Longitude: \(savedLocation.longitude)"
+        //savedLocationLabel.text = "Latitude: \(savedLocation.latitude), Longitude: \(savedLocation.longitude)"
         
-        // Set savedLocationAnnotation in RadarView and mark current location on map
-        mapViewController.savedLocationAnnotation.coordinate = savedLocation
-        mapViewController.map.addAnnotation(mapViewController.savedLocationAnnotation)
+        // Set savedLocationAnnotation in MapView and mark current location on map
+        if mapViewController.isViewLoaded {
+            mapViewController.savedLocationAnnotation.coordinate = savedLocation
+            mapViewController.map.addAnnotation(mapViewController.savedLocationAnnotation)
+        }
     }
     
     // Clear user's current location
