@@ -58,6 +58,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager: CLLocationManager!
     var userLocation: CLLocation! // Current Location of user
     var savedLocation: CLLocation! // Saved location
+    var distanceToLocation: CLLocationDistance! // Distance from user to location
     var mapViewController: MapViewController! // Reference to the map ViewController
     
     // Computed Properties
@@ -98,24 +99,29 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         
         // TODO: Calculate distance and direction from current location to marked location
         if savedLocation != nil {
-            let distanceInMeters = savedLocation.distance(from: userLocation)
-            distanceLabel.text = String(format: "%.2f m", distanceInMeters)
+            distanceToLocation = savedLocation.distance(from: userLocation)
+
+            if (distanceToLocation > Utility.distanceThreshold) {
+                distanceLabel.text = String(format: "%.2f m", distanceToLocation)
+            // Too close, reset compass position and set text
+            } else {
+                UIView.animate(withDuration: 0.5) {
+                    self.compassImageView.transform = CGAffineTransform(rotationAngle: 0)
+                }
+                distanceLabel.text = "At Location"
+            }
         }
     }
     
     // Update compass image to match the new heading
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        if #available(iOS 10.0, *) {
-            os_log("Angle changed.", type: .default)
-        }
-        
+        // Computes angle between current location bearing and target location
         func computeAngle(newAngle: CGFloat) -> CGFloat {
-            let originalHeading = self.locationBearing - newAngle.degreesToRadians
-            return originalHeading
+            return self.locationBearing - newAngle.degreesToRadians
         }
         
         // Rotate the compass image accordingly
-        if self.savedLocation != nil {
+        if self.savedLocation != nil && distanceToLocation != nil && distanceToLocation > Utility.distanceThreshold {
             UIView.animate(withDuration: 0.5) {
                 self.compassImageView.transform = CGAffineTransform(rotationAngle: computeAngle(newAngle: CGFloat(newHeading.trueHeading)))
             }
@@ -123,9 +129,6 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // MARK: - Actions
-    /*@IBAction func updateLocationButton(_ sender: UIButton) {
-        currentLocationLabel.text = "Latitude: \(userCoordinate.latitude), Longtiude: \(userCoordinate.longitude)"
-    }*/
     
     // Save user's current location
     @IBAction func parkHereButton(_ sender: UIBarButtonItem) {

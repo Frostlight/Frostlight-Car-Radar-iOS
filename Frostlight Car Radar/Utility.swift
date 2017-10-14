@@ -17,6 +17,8 @@ class Utility {
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     // Currently active location
     static let ActiveLocationArchiveURL = DocumentsDirectory.appendingPathComponent("activeLocation")
+    // Threshold for radar to indicate "too close" (in metres)
+    static let distanceThreshold: CLLocationDistance = 10.0
     
     // MARK: - Static Functions
     // Initialize location managers used in RadarView and MapView
