@@ -11,44 +11,7 @@ import CoreLocation
 import MapKit
 import os.log
 
-// MARK: - Extensions
-// Credits to Fabrizio Bartolomucci @ Stack Overflow
-public extension CLLocation {
-    func DegreesToRadians(_ degrees: Double ) -> Double {
-        return degrees * .pi / 180
-    }
-    
-    func RadiansToDegrees(_ radians: Double) -> Double {
-        return radians * 180 / .pi
-    }
-    
-    func bearingToLocationRadian(_ destinationLocation: CLLocation) -> Double {
-        let latitude1 = DegreesToRadians(self.coordinate.latitude)
-        let longitude1 = DegreesToRadians(self.coordinate.longitude)
-        
-        let latitude2 = DegreesToRadians(destinationLocation.coordinate.latitude);
-        let longitude2 = DegreesToRadians(destinationLocation.coordinate.longitude);
-        
-        let diffLongitude = longitude2 - longitude1
-        
-        let y = sin(diffLongitude) * cos(latitude2);
-        let x = cos(latitude1) * sin(latitude2) - sin(latitude1) * cos(latitude2) * cos(diffLongitude);
-        let radiansBearing = atan2(y, x)
-        
-        return radiansBearing
-    }
-    
-    func bearingToLocationDegrees(destinationLocation: CLLocation) -> Double{
-        return   RadiansToDegrees(bearingToLocationRadian(destinationLocation))
-    }
-}
-
-extension CGFloat {
-    var degreesToRadians: CGFloat { return self * .pi / 180 }
-    var radiansToDegrees: CGFloat { return self * 180 / .pi }
-}
-
-class RadarViewController: UIViewController, CLLocationManagerDelegate {
+class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     // MARK: - Properties
     // Outlets
     @IBOutlet weak var compassImageView: UIImageView! // Image of "compass"
@@ -72,6 +35,9 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         // Setup tap gesture to resign first responder (hide keyboard)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
         view.addGestureRecognizer(tapGesture)
+        
+        // For UITextFieldDelegate
+        textField.delegate = self
 
         // Set up the reference to mapViewController
         let mapNavigationController = self.tabBarController?.viewControllers?[1] as! UINavigationController
@@ -79,7 +45,11 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         
         // Set up MapViewController as a CLLocationManager delegate
         if (CLLocationManager.locationServicesEnabled()) {
-            Utility.setUpLocationManager(locationManager: &locationManager)
+            locationManager = CLLocationManager()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
             locationManager.delegate = self
         }
         
@@ -118,6 +88,20 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // MARK: UITextFieldDelegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if #available(iOS 10.0, *) {
+            os_log("Text field ended editing.", type: .default)
+        }
+        
+        // TODO: Save text to file
+        
+        // Set textfield in MapViewController to show the same thing
+        if mapViewController.isViewLoaded {
+            mapViewController.textField.text = textField.text
+        }
+    }
+    
     // Update compass image to match the new heading
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         // Computes angle between current location bearing and target location
@@ -149,8 +133,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         savedLocation = userLocation
         
         // Save to file
-        saveLocationToFile()
-        //savedLocationLabel.text = "Latitude: \(savedLocation.latitude), Longitude: \(savedLocation.longitude)"
+        Utility.saveLocationToFile(location: userLocation)
         
         // Set savedLocationAnnotation in MapView and mark current location on map
         if mapViewController.isViewLoaded {
@@ -173,9 +156,8 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         // Remove local saved location
         savedLocation = nil
         
-        // Delete file
-        deleteLocationFromFile()
-        //savedLocationLabel.text = "Location: Unknown"
+        // Delete file and update radar label
+        Utility.deleteLocationFromFile()
         distanceLabel.text = "Not Parked"
     }
     
@@ -191,33 +173,6 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func loadButton(_ sender: UIBarButtonItem) {
         if #available(iOS 10.0, *) {
             os_log("Load button pressed.", type: .default)
-        }
-    }
-    
-    // MARK: - Private Functions
-    // Save the current location into file
-    private func saveLocationToFile() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(userLocation, toFile: Utility.ActiveLocationArchiveURL.path)
-        if #available(iOS 10.0, *) {
-            if isSuccessfulSave {
-                os_log("Successfully saved location.", type: .default)
-            } else {
-                os_log("Failed to save location.", type: .default)
-            }
-        }
-        
-    }
-    
-    // Deletes the location file
-    private func deleteLocationFromFile() {
-        // Create a FileManager instance
-        let fileManager = FileManager.default
-        do {
-            try fileManager.removeItem(atPath: Utility.ActiveLocationArchiveURL.path)
-        } catch {
-            if #available(iOS 10.0, *) {
-                os_log("Failed to clear location.", type: .default)
-            }
         }
     }
 }

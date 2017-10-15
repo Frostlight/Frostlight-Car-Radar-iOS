@@ -11,28 +11,46 @@ import CoreLocation
 import os.log
 
 class Utility {
-    
     // MARK: - Constants
     // Directory to save files
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    // Currently active location
-    static let ActiveLocationArchiveURL = DocumentsDirectory.appendingPathComponent("activeLocation")
+    static let ActiveLocationArchiveURL = DocumentsDirectory.appendingPathComponent("activeLocation") // Currently active location
+    static let TextFieldArchiveURL = DocumentsDirectory.appendingPathComponent("textField") // Text field save location
+    
     // Threshold for radar to indicate "too close" (in metres)
     static let distanceThreshold: CLLocationDistance = 20.0
     
-    // MARK: - Static Functions
-    // Initialize location managers used in RadarView and MapView
-    static func setUpLocationManager(locationManager: inout CLLocationManager!) {
-        locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        locationManager.startUpdatingHeading()
+    // MARK: - Location Save/Load
+    // Save a location to file
+    static func saveLocationToFile(location: CLLocation!) {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(location, toFile: ActiveLocationArchiveURL.path)
+        if #available(iOS 10.0, *) {
+            if isSuccessfulSave {
+                os_log("Successfully saved location.", type: .default)
+            } else {
+                os_log("Failed to save location.", type: .default)
+            }
+        }
     }
     
-    // Load the current tracked location from file
+    // Load a location from file
     static func loadLocationFromFile() -> CLLocation? {
         let location = NSKeyedUnarchiver.unarchiveObject(withFile: ActiveLocationArchiveURL.path) as? CLLocation
         return location
     }
+    
+    // Delete the location file
+    static func deleteLocationFromFile() {
+        // Create a FileManager instance
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: ActiveLocationArchiveURL.path)
+        } catch {
+            if #available(iOS 10.0, *) {
+                os_log("Failed to clear location.", type: .default)
+            }
+        }
+    }
+    
+    // MARK: - TextField Save/Load
 }
