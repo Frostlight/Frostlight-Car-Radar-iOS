@@ -23,16 +23,16 @@ public extension CLLocation {
     }
     
     func bearingToLocationRadian(_ destinationLocation: CLLocation) -> Double {
-        let lat1 = DegreesToRadians(self.coordinate.latitude)
-        let lon1 = DegreesToRadians(self.coordinate.longitude)
+        let latitude1 = DegreesToRadians(self.coordinate.latitude)
+        let longitude1 = DegreesToRadians(self.coordinate.longitude)
         
-        let lat2 = DegreesToRadians(destinationLocation.coordinate.latitude);
-        let lon2 = DegreesToRadians(destinationLocation.coordinate.longitude);
+        let latitude2 = DegreesToRadians(destinationLocation.coordinate.latitude);
+        let longitude2 = DegreesToRadians(destinationLocation.coordinate.longitude);
         
-        let dLon = lon2 - lon1
+        let diffLongitude = longitude2 - longitude1
         
-        let y = sin(dLon) * cos(lat2);
-        let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
+        let y = sin(diffLongitude) * cos(latitude2);
+        let x = cos(latitude1) * sin(latitude2) - sin(latitude1) * cos(latitude2) * cos(diffLongitude);
         let radiansBearing = atan2(y, x)
         
         return radiansBearing
@@ -53,6 +53,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     // Outlets
     @IBOutlet weak var compassImageView: UIImageView! // Image of "compass"
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var textField: UITextField!
     
     // Local Properties
     var locationManager: CLLocationManager!
@@ -67,6 +68,10 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setup tap gesture to resign first responder (hide keyboard)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
+        view.addGestureRecognizer(tapGesture)
 
         // Set up the reference to mapViewController
         let mapNavigationController = self.tabBarController?.viewControllers?[1] as! UINavigationController
@@ -128,8 +133,12 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - Actions
+    // MARK: - Gestures
+    @objc func tap(gesture: UITapGestureRecognizer) {
+        textField.resignFirstResponder()
+    }
     
+    // MARK: - Actions
     // Save user's current location
     @IBAction func parkHereButton(_ sender: UIBarButtonItem) {
         if #available(iOS 10.0, *) {

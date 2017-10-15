@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
     // MARK: - Properties
     // Outlets
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var textField: UITextField!
     
     // Local Properties
     var savedLocationAnnotation: MKPointAnnotation!
@@ -21,6 +22,10 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setup tap gesture to resign first responder (hide keyboard)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
+        view.addGestureRecognizer(tapGesture)
         
         // Set up the reference to radarViewController
         let radarNavigationController = self.tabBarController?.viewControllers?[0] as! UINavigationController
@@ -35,6 +40,11 @@ class MapViewController: UIViewController {
             savedLocationAnnotation.coordinate = location.coordinate
             map.addAnnotation(savedLocationAnnotation)
         }
+    }
+    
+    // MARK: - Gestures
+    @objc func tap(gesture: UITapGestureRecognizer) {
+        textField.resignFirstResponder()
     }
     
     // MARK: - Actions
