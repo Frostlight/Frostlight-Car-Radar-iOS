@@ -56,7 +56,15 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NrS-iz-rTb" userLabel="Top Toolbar">
                                 <rect key="frame" x="0.0" y="64" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="IKA-9g-Bal"/>
+                                    <barButtonItem style="plain" id="YZ4-sx-7jC">
+                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="IJP-zx-VqQ">
+                                            <rect key="frame" x="20" y="7" width="374" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -134,7 +142,17 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="a1W-uZ-OV4"/>
                                 </constraints>
-                                <items/>
+                                <items>
+                                    <barButtonItem style="plain" id="ffF-lp-AuZ">
+                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="d9m-qb-wqj">
+                                            <rect key="frame" x="20" y="7" width="374" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
+                                </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Parked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sS7-Qa-jix">
                                 <rect key="frame" x="0.0" y="107.99999999999999" width="414" height="73.666666666666643"/>
