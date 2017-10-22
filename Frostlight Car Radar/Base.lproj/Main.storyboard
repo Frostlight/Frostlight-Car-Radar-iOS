@@ -31,21 +31,15 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jIp-hv-lCo"/>
-                                    <barButtonItem title="Clear" id="Lhb-eC-Qni">
+                                    <barButtonItem title="Clear Location" id="Lhb-eC-Qni">
                                         <connections>
                                             <action selector="clearButton:" destination="6ez-FN-r0j" id="fba-Ak-5zN"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="9VD-vJ-eeH"/>
-                                    <barButtonItem title="Save" id="KF4-gL-U0V">
+                                    <barButtonItem title="UNITS" id="KF4-gL-U0V">
                                         <connections>
-                                            <action selector="saveButton:" destination="6ez-FN-r0j" id="7pJ-hl-Rzj"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mxN-6Q-yZl"/>
-                                    <barButtonItem title="Load" id="Ir9-Y3-v6T">
-                                        <connections>
-                                            <action selector="loadButton:" destination="6ez-FN-r0j" id="phZ-oZ-X6h"/>
+                                            <action selector="unitsButton:" destination="6ez-FN-r0j" id="R1c-kd-R1T"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -58,7 +52,7 @@
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="WKU-eB-eDr"/>
                                     <barButtonItem style="plain" id="YZ4-sx-7jC">
-                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="IJP-zx-VqQ">
+                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Leave a note (parking area, etc.)" textAlignment="natural" minimumFontSize="17" id="IJP-zx-VqQ">
                                             <rect key="frame" x="20" y="7" width="374" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <nil key="textColor"/>
@@ -84,9 +78,7 @@
                             <constraint firstItem="MhP-hH-TnY" firstAttribute="top" secondItem="C5D-zn-nfg" secondAttribute="bottom" id="s7w-vL-elK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Frostlight Car Map" id="Ohv-rc-VRU">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="ZZy-Ny-E5T"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Frostlight Car Map" id="Ohv-rc-VRU"/>
                     <connections>
                         <outlet property="map" destination="5xP-b6-rCc" id="6Gm-6J-eHI"/>
                         <outlet property="textField" destination="IJP-zx-VqQ" id="y97-Jm-byN"/>
@@ -118,21 +110,15 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="t7e-I8-ajG"/>
-                                    <barButtonItem title="Clear" id="Ci2-9X-Hv2">
+                                    <barButtonItem title="Clear Location" id="Ci2-9X-Hv2">
                                         <connections>
                                             <action selector="clearButton:" destination="gMC-Ie-fCQ" id="4sT-bk-epr"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="kwh-T4-ayS"/>
-                                    <barButtonItem title="Save" id="a0m-s6-zep">
+                                    <barButtonItem title="UNITS" id="a0m-s6-zep">
                                         <connections>
-                                            <action selector="saveButton:" destination="gMC-Ie-fCQ" id="pmv-ot-JEC"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Tfj-Ij-mh0"/>
-                                    <barButtonItem title="Load" id="yEG-n4-hFW">
-                                        <connections>
-                                            <action selector="loadButton:" destination="gMC-Ie-fCQ" id="be4-w3-CP9"/>
+                                            <action selector="unitsButton:" destination="gMC-Ie-fCQ" id="GpM-MK-Cg8"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -145,7 +131,7 @@
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cHh-2U-RS2"/>
                                     <barButtonItem style="plain" id="ffF-lp-AuZ">
-                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="d9m-qb-wqj">
+                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Leave a note (parking area, etc.)" textAlignment="natural" minimumFontSize="17" id="d9m-qb-wqj">
                                             <rect key="frame" x="20" y="7" width="374" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <nil key="textColor"/>
@@ -178,9 +164,7 @@
                             <constraint firstItem="mGV-Gx-28C" firstAttribute="top" secondItem="x5s-vo-jNK" secondAttribute="bottom" id="k1p-X6-7wM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Frostlight Car Radar" id="rvK-aD-L03">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="oRh-fz-Rxp"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Frostlight Car Radar" id="rvK-aD-L03"/>
                     <connections>
                         <outlet property="compassImageView" destination="koD-j1-oA2" id="aGY-T1-VBr"/>
                         <outlet property="distanceLabel" destination="sS7-Qa-jix" id="oEQ-ds-Due"/>

@@ -53,4 +53,34 @@ class Utility {
     }
     
     // MARK: - TextField Save/Load
+    // Save textfield contents to file
+    static func saveTextToFile(text: String!) {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(text, toFile: TextFieldArchiveURL.path)
+        if #available(iOS 10.0, *) {
+            if isSuccessfulSave {
+                os_log("Successfully saved text.", type: .default)
+            } else {
+                os_log("Failed to save text.", type: .default)
+            }
+        }
+    }
+    
+    // Load textfield contents from file
+    static func loadTextFromFile() -> String! {
+        let text = NSKeyedUnarchiver.unarchiveObject(withFile: TextFieldArchiveURL.path) as? String
+        return text
+    }
+    
+    // Delete textfield contents file
+    static func deleteTextFromFile() {
+        // Create a FileManager instance
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: TextFieldArchiveURL.path)
+        } catch {
+            if #available(iOS 10.0, *) {
+                os_log("Failed to clear location.", type: .default)
+            }
+        }
+    }
 }

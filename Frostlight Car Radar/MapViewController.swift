@@ -9,8 +9,9 @@
 import UIKit
 import CoreLocation
 import MapKit
+import os.log
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Properties
     // Outlets
     @IBOutlet weak var map: MKMapView!
@@ -27,6 +28,9 @@ class MapViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
         view.addGestureRecognizer(tapGesture)
         
+        // For UITextFieldDelegate
+        textField.delegate = self
+        
         // Set up the reference to radarViewController
         let radarNavigationController = self.tabBarController?.viewControllers?[0] as! UINavigationController
         radarViewController = radarNavigationController.topViewController as! RadarViewController
@@ -39,6 +43,26 @@ class MapViewController: UIViewController {
         if let location = Utility.loadLocationFromFile() {
             savedLocationAnnotation.coordinate = location.coordinate
             map.addAnnotation(savedLocationAnnotation)
+        }
+        
+        // Load saved TextField string
+        if let text = Utility.loadTextFromFile() {
+            textField.text = text
+        }
+    }
+    
+    // MARK: UITextFieldDelegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if #available(iOS 10.0, *) {
+            os_log("Text field ended editing.", type: .default)
+        }
+        
+        // Save text to file
+        Utility.saveTextToFile(text: textField.text)
+        
+        // Set textfield in MapViewController to show the same thing
+        if radarViewController.isViewLoaded {
+            radarViewController.textField.text = textField.text
         }
     }
     
@@ -57,11 +81,7 @@ class MapViewController: UIViewController {
         radarViewController.clearButton(sender)
     }
     
-    @IBAction func saveButton(_ sender: UIBarButtonItem) {
-        radarViewController.saveButton(sender)
-    }
-    
-    @IBAction func loadButton(_ sender: UIBarButtonItem) {
-        radarViewController.loadButton(sender)
+    @IBAction func unitsButton(_ sender: UIBarButtonItem) {
+        radarViewController.unitsButton(sender)
     }
 }

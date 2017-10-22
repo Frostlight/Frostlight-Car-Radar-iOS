@@ -58,6 +58,11 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
             savedLocation = location
             distanceLabel.text = "Initializing"
         }
+        
+        // Load saved TextField string
+        if let text = Utility.loadTextFromFile() {
+            textField.text = text
+        }
     }
     
     // MARK: - CLLocationManagerDelegate
@@ -72,7 +77,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
             mapViewController.map.setRegion(region, animated: true)
         }
         
-        // TODO: Calculate distance and direction from current location to marked location
+        // Calculate distance and direction from current location to marked location
         if savedLocation != nil {
             distanceToLocation = savedLocation.distance(from: userLocation)
 
@@ -85,20 +90,6 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
                 }
                 distanceLabel.text = "At Location"
             }
-        }
-    }
-    
-    // MARK: UITextFieldDelegate
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if #available(iOS 10.0, *) {
-            os_log("Text field ended editing.", type: .default)
-        }
-        
-        // TODO: Save text to file
-        
-        // Set textfield in MapViewController to show the same thing
-        if mapViewController.isViewLoaded {
-            mapViewController.textField.text = textField.text
         }
     }
     
@@ -117,6 +108,17 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         }
     }
     
+    // MARK: UITextFieldDelegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // Save text to file
+        Utility.saveTextToFile(text: textField.text)
+        
+        // Set textfield in MapViewController to show the same thing
+        if mapViewController.isViewLoaded {
+            mapViewController.textField.text = textField.text
+        }
+    }
+    
     // MARK: - Gestures
     @objc func tap(gesture: UITapGestureRecognizer) {
         textField.resignFirstResponder()
@@ -125,10 +127,52 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     // MARK: - Actions
     // Save user's current location
     @IBAction func parkHereButton(_ sender: UIBarButtonItem) {
-        if #available(iOS 10.0, *) {
-            os_log("Park here button pressed.", type: .default)
+        // Confirm Action if location already saved
+        if savedLocation != nil {
+            let saveAlert = UIAlertController(title: "Park Here", message: "Overwrite current location?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // Confirm
+            saveAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(action:UIAlertAction!) in
+                self.parkHereHelper()
+            }))
+            // Cancel
+            saveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            // Present confirmation window
+            present(saveAlert, animated: true, completion: nil)
+        } else {
+            parkHereHelper()
         }
-        
+    }
+    
+    // Clear user's current location
+    @IBAction func clearButton(_ sender: UIBarButtonItem) {
+        // Confirm Action if location already saved
+        // Otherwise just do nothing
+        if savedLocation != nil {
+            let clearAlert = UIAlertController(title: "Clear", message: "Clear current location?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // Confirm
+            clearAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(action:UIAlertAction!) in
+                self.clearHelper()
+            }))
+            // Cancel
+            clearAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            // Present confirmation window
+            present(clearAlert, animated: true, completion: nil)
+        }
+    }
+    
+    // Switch between metres and feet (metric and imperial)
+    @IBAction func unitsButton(_ sender: UIBarButtonItem) {
+        if #available(iOS 10.0, *) {
+            os_log("Units button pressed.", type: .default)
+        }
+    }
+    
+    // MARK: - Private Functions
+    private func parkHereHelper() {
         // Save as local variable and to file
         savedLocation = userLocation
         
@@ -142,38 +186,18 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         }
     }
     
-    // Clear user's current location
-    @IBAction func clearButton(_ sender: UIBarButtonItem) {
-        if #available(iOS 10.0, *) {
-            os_log("Clear button pressed.", type: .default)
-        }
-        
+    private func clearHelper() {
         // Remove annotation from map (if it exists)
         if mapViewController.isViewLoaded {
             mapViewController.map.removeAnnotation(mapViewController.savedLocationAnnotation)
         }
-            
+        
         // Remove local saved location
         savedLocation = nil
         
         // Delete file and update radar label
         Utility.deleteLocationFromFile()
         distanceLabel.text = "Not Parked"
-    }
-    
-    // TODO: Backup user's current saved location into a saved list
-    @IBAction func saveButton(_ sender: UIBarButtonItem) {
-        if #available(iOS 10.0, *) {
-            os_log("Save button pressed.", type: .default)
-        }
-        
-    }
-    
-    // TODO: Restore one of the saved locations onto the view
-    @IBAction func loadButton(_ sender: UIBarButtonItem) {
-        if #available(iOS 10.0, *) {
-            os_log("Load button pressed.", type: .default)
-        }
     }
 }
 
