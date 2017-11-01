@@ -16,9 +16,10 @@ class Utility {
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ActiveLocationArchiveURL = DocumentsDirectory.appendingPathComponent("activeLocation") // Currently active location
     static let TextFieldArchiveURL = DocumentsDirectory.appendingPathComponent("textField") // Text field save location
+    static let ImperialFlagArchiveURL = DocumentsDirectory.appendingPathComponent("imperial") // Units save location
     
     // Threshold for radar to indicate "too close" (in metres)
-    static let distanceThreshold: CLLocationDistance = 20.0
+    static let distanceThreshold: CLLocationDistance = 15.0
     
     // MARK: - Location Save/Load
     // Save a location to file
@@ -82,5 +83,24 @@ class Utility {
                 os_log("Failed to clear location.", type: .default)
             }
         }
+    }
+    
+    // MARK: - Imperial Flag Save/Load
+    // If true, use imperial units (feet)
+    static func saveImperial(imperial: Bool!) {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(imperial, toFile: ImperialFlagArchiveURL.path)
+        if #available(iOS 10.0, *) {
+            if isSuccessfulSave {
+                os_log("Successfully saved imperial flag.", type: .default)
+            } else {
+                os_log("Failed to save imperial flag.", type: .default)
+            }
+        }
+    }
+    
+    // Load imperial flag from file
+    static func loadImperial() -> Bool! {
+        let imperial = NSKeyedUnarchiver.unarchiveObject(withFile: ImperialFlagArchiveURL.path) as? Bool
+        return imperial
     }
 }

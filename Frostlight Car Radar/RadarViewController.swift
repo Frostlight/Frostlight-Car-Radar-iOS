@@ -17,6 +17,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     @IBOutlet weak var compassImageView: UIImageView! // Image of "compass"
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var unitsButton: UIBarButtonItem!
     
     // Local Properties
     var locationManager: CLLocationManager!
@@ -24,6 +25,7 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     var savedLocation: CLLocation! // Saved location
     var distanceToLocation: CLLocationDistance! // Distance from user to location
     var mapViewController: MapViewController! // Reference to the map ViewController
+    var imperialFlag: Bool! // If true, use feet (use meters by default)
     
     // Computed Properties
     var locationBearing: CGFloat {
@@ -51,6 +53,18 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
             locationManager.startUpdatingLocation()
             locationManager.startUpdatingHeading()
             locationManager.delegate = self
+        }
+        
+        // Load saved imperial flag toggle (if true, units used is feet)
+        if let imperial: Bool? = Utility.loadImperial() {
+            imperialFlag = imperial
+            if imperialFlag {
+                unitsButton.title = "Feet"
+            }
+        } else {
+            // Use meters by default if no saved flag exists
+            imperialFlag = false
+            Utility.saveImperial(imperial: imperialFlag)
         }
         
         // Load saved location
@@ -82,7 +96,12 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
             distanceToLocation = savedLocation.distance(from: userLocation)
 
             if (distanceToLocation > Utility.distanceThreshold) {
-                distanceLabel.text = String(format: "%.2f m", distanceToLocation)
+                if (!imperialFlag) {
+                    distanceLabel.text = String(format: "%.2f m", distanceToLocation)
+                } else {
+                    // Display in feet if toggled instead
+                    distanceLabel.text = String(format: "%.2f ft", distanceToLocation * 3.28)
+                }
             // Too close, reset compass position and set text
             } else {
                 UIView.animate(withDuration: 0.5) {
@@ -166,8 +185,31 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     
     // Switch between metres and feet (metric and imperial)
     @IBAction func unitsButton(_ sender: UIBarButtonItem) {
-        if #available(iOS 10.0, *) {
-            os_log("Units button pressed.", type: .default)
+        // Toggle imperialflag and save label text first
+        imperialFlag = !imperialFlag
+        Utility.saveImperial(imperial: imperialFlag)
+        
+        // Change label text accordingly
+        if imperialFlag {
+            unitsButton.title = "Feet"
+            if mapViewController.isViewLoaded {
+                mapViewController.unitsButton.title = "Feet"
+            }
+        } else {
+            unitsButton.title = "Meters"
+            if mapViewController.isViewLoaded {
+                mapViewController.unitsButton.title = "Meters"
+            }
+        }
+        
+        // Change the distance label if available
+        if self.savedLocation != nil && distanceToLocation != nil && distanceToLocation > Utility.distanceThreshold {
+            if (!imperialFlag) {
+                distanceLabel.text = String(format: "%.2f m", distanceToLocation)
+            } else {
+                // Display in feet if toggled instead
+                distanceLabel.text = String(format: "%.2f ft", distanceToLocation * 3.28)
+            }
         }
     }
     

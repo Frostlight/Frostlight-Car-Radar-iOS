@@ -16,6 +16,7 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     // Outlets
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var unitsButton: UIBarButtonItem!
     
     // Local Properties
     var savedLocationAnnotation: MKPointAnnotation!
@@ -34,6 +35,13 @@ class MapViewController: UIViewController, UITextFieldDelegate {
         // Set up the reference to radarViewController
         let radarNavigationController = self.tabBarController?.viewControllers?[0] as! UINavigationController
         radarViewController = radarNavigationController.topViewController as! RadarViewController
+        
+        // Load saved imperial flag toggle (if true, units used is feet)
+        if let imperial = Utility.loadImperial() {
+            if imperial {
+                unitsButton.title = "Feet"
+            }
+        }
         
         // Set up saved annotation
         savedLocationAnnotation = MKPointAnnotation()
