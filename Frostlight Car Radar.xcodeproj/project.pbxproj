@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B683606B42F62220B2A9DE5 /* Pods_Frostlight_Car_Radar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF28445BB531A9F54030F67 /* Pods_Frostlight_Car_Radar.framework */; };
 		BF3235F51F763E5E00C05556 /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E1B431F5E76EB0003108A /* RadarViewController.swift */; };
 		BF3E1B421F5E76EB0003108A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E1B411F5E76EB0003108A /* AppDelegate.swift */; };
 		BF3E1B471F5E76EB0003108A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3E1B451F5E76EB0003108A /* Main.storyboard */; };
@@ -29,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AF28445BB531A9F54030F67 /* Pods_Frostlight_Car_Radar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Frostlight_Car_Radar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14CD67709E3FEC5313518973 /* Pods-Frostlight Car Radar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Frostlight Car Radar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Frostlight Car Radar/Pods-Frostlight Car Radar.debug.xcconfig"; sourceTree = "<group>"; };
+		6EE4793899DE38C7F2F0A871 /* Pods-Frostlight Car Radar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Frostlight Car Radar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Frostlight Car Radar/Pods-Frostlight Car Radar.release.xcconfig"; sourceTree = "<group>"; };
 		BF3E1B3E1F5E76EB0003108A /* Frostlight Car Radar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Frostlight Car Radar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3E1B411F5E76EB0003108A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF3E1B431F5E76EB0003108A /* RadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B683606B42F62220B2A9DE5 /* Pods_Frostlight_Car_Radar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +67,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		209AAE620B562A7D2C129FCB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				14CD67709E3FEC5313518973 /* Pods-Frostlight Car Radar.debug.xcconfig */,
+				6EE4793899DE38C7F2F0A871 /* Pods-Frostlight Car Radar.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BF3E1B351F5E76EB0003108A = {
 			isa = PBXGroup;
 			children = (
 				BF3E1B401F5E76EB0003108A /* Frostlight Car Radar */,
 				BF3E1B551F5E76EB0003108A /* Frostlight Car RadarTests */,
 				BF3E1B3F1F5E76EB0003108A /* Products */,
+				209AAE620B562A7D2C129FCB /* Pods */,
+				C6E028A8E56B48038DE71A2B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +121,14 @@
 			path = "Frostlight Car RadarTests";
 			sourceTree = "<group>";
 		};
+		C6E028A8E56B48038DE71A2B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0AF28445BB531A9F54030F67 /* Pods_Frostlight_Car_Radar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,9 +136,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF3E1B5B1F5E76EB0003108A /* Build configuration list for PBXNativeTarget "Frostlight Car Radar" */;
 			buildPhases = (
+				87D23B0EF97F90190355D217 /* [CP] Check Pods Manifest.lock */,
 				BF3E1B3A1F5E76EB0003108A /* Sources */,
 				BF3E1B3B1F5E76EB0003108A /* Frameworks */,
 				BF3E1B3C1F5E76EB0003108A /* Resources */,
+				3E1FCF0935B53B92D4780F5E /* [CP] Embed Pods Frameworks */,
+				ED2FD2EC2A79EAB38F6C4EEE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,6 +233,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E1FCF0935B53B92D4780F5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Frostlight Car Radar/Pods-Frostlight Car Radar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87D23B0EF97F90190355D217 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Frostlight Car Radar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED2FD2EC2A79EAB38F6C4EEE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Frostlight Car Radar/Pods-Frostlight Car Radar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BF3E1B3A1F5E76EB0003108A /* Sources */ = {
@@ -369,6 +447,7 @@
 		};
 		BF3E1B5C1F5E76EB0003108A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14CD67709E3FEC5313518973 /* Pods-Frostlight Car Radar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = M822S4TQNS;
@@ -384,6 +463,7 @@
 		};
 		BF3E1B5D1F5E76EB0003108A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EE4793899DE38C7F2F0A871 /* Pods-Frostlight Car Radar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = M822S4TQNS;
