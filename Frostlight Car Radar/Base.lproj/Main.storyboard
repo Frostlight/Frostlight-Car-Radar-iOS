@@ -44,8 +44,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" ambiguous="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xP-b6-rCc">
-                                <rect key="frame" x="0.0" y="108" width="414" height="468"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xP-b6-rCc">
+                                <rect key="frame" x="0.0" y="108" width="414" height="484"/>
                             </mapView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NrS-iz-rTb" userLabel="Top Toolbar">
                                 <rect key="frame" x="0.0" y="64" width="414" height="44"/>
@@ -53,7 +53,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="WKU-eB-eDr"/>
                                     <barButtonItem style="plain" id="YZ4-sx-7jC">
                                         <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Leave a note (parking area, etc.)" textAlignment="natural" minimumFontSize="17" id="IJP-zx-VqQ">
-                                            <rect key="frame" x="92.333333333333329" y="7" width="229.33333333333337" height="30"/>
+                                            <rect key="frame" x="67" y="7" width="280" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -63,8 +63,8 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hAv-X3-0tn"/>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAh-x8-oEk">
-                                <rect key="frame" x="0.0" y="593" width="414" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAh-x8-oEk" customClass="kGADAdSizeSmartBannerPortrait">
+                                <rect key="frame" x="47" y="592" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="kv1-Ny-Yua"/>
@@ -80,10 +80,12 @@
                             <constraint firstItem="NrS-iz-rTb" firstAttribute="top" secondItem="qSB-7d-eBe" secondAttribute="bottom" id="7n8-Kk-MwK"/>
                             <constraint firstItem="5xP-b6-rCc" firstAttribute="top" secondItem="NrS-iz-rTb" secondAttribute="bottom" id="ANZ-WG-BqV"/>
                             <constraint firstItem="C5D-zn-nfg" firstAttribute="leading" secondItem="aT1-7y-Nnt" secondAttribute="leading" id="UTa-pd-oG0"/>
-                            <constraint firstItem="C5D-zn-nfg" firstAttribute="top" secondItem="hAh-x8-oEk" secondAttribute="bottom" id="VK0-zH-o5Q"/>
+                            <constraint firstItem="C5D-zn-nfg" firstAttribute="top" secondItem="hAh-x8-oEk" secondAttribute="bottom" constant="1" id="VK0-zH-o5Q"/>
                             <constraint firstItem="NrS-iz-rTb" firstAttribute="leading" secondItem="aT1-7y-Nnt" secondAttribute="leading" id="lIZ-mV-cBT"/>
                             <constraint firstAttribute="trailing" secondItem="C5D-zn-nfg" secondAttribute="trailing" id="luj-Wq-xLh"/>
+                            <constraint firstItem="hAh-x8-oEk" firstAttribute="centerX" secondItem="aT1-7y-Nnt" secondAttribute="centerX" id="r6S-Tz-DQ4"/>
                             <constraint firstItem="MhP-hH-TnY" firstAttribute="top" secondItem="C5D-zn-nfg" secondAttribute="bottom" id="s7w-vL-elK"/>
+                            <constraint firstItem="hAh-x8-oEk" firstAttribute="top" secondItem="5xP-b6-rCc" secondAttribute="bottom" id="vgQ-3p-wj3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Frostlight Car Map" id="Ohv-rc-VRU"/>
@@ -95,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZP-KJ-udO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1346" y="296"/>
+            <point key="canvasLocation" x="1344.9275362318842" y="295.92391304347831"/>
         </scene>
         <!--Frostlight Car Radar-->
         <scene sceneID="f4z-Gh-ZhC">
@@ -109,7 +111,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlJ-y9-HMy" userLabel="Bottom Toolbar">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompassArrow" translatesAutoresizingMaskIntoConstraints="NO" id="koD-j1-oA2">
+                                <rect key="frame" x="41.333333333333343" y="202.33333333333334" width="331.33333333333326" height="331.33333333333326"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGV-Gx-28C" userLabel="Top Toolbar">
+                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cHh-2U-RS2"/>
+                                    <barButtonItem style="plain" id="ffF-lp-AuZ">
+                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Leave a note (parking area, etc.)" textAlignment="natural" minimumFontSize="17" id="d9m-qb-wqj">
+                                            <rect key="frame" x="67" y="7" width="280" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7dZ-eS-XGA"/>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Parked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sS7-Qa-jix">
+                                <rect key="frame" x="0.0" y="108" width="414" height="73.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="52"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fs7-OI-x1w" customClass="kGADAdSizeSmartBannerPortrait">
+                                <rect key="frame" x="47" y="592" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Fak-9v-5b3"/>
+                                    <constraint firstAttribute="height" constant="50" id="wDe-Fj-1f8"/>
+                                </constraints>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlJ-y9-HMy" userLabel="Bottom Toolbar">
                                 <rect key="frame" x="0.0" y="643" width="414" height="44"/>
                                 <items>
                                     <barButtonItem title="Park Here" id="frn-c8-J7u">
@@ -131,44 +166,12 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompassArrow" translatesAutoresizingMaskIntoConstraints="NO" id="koD-j1-oA2">
-                                <rect key="frame" x="41.333333333333343" y="202.33333333333334" width="331.33333333333326" height="331.33333333333326"/>
-                            </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGV-Gx-28C" userLabel="Top Toolbar">
-                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cHh-2U-RS2"/>
-                                    <barButtonItem style="plain" id="ffF-lp-AuZ">
-                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Leave a note (parking area, etc.)" textAlignment="natural" minimumFontSize="17" id="d9m-qb-wqj">
-                                            <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7dZ-eS-XGA"/>
-                                </items>
-                            </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Parked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sS7-Qa-jix">
-                                <rect key="frame" x="0.0" y="108" width="414" height="73.666666666666686"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="52"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fs7-OI-x1w">
-                                <rect key="frame" x="0.0" y="578" width="414" height="65"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="Fak-9v-5b3"/>
-                                    <constraint firstAttribute="height" constant="50" id="wDe-Fj-1f8"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="koD-j1-oA2" firstAttribute="centerX" secondItem="HRf-Uo-fmi" secondAttribute="centerX" id="1YQ-fD-3s6"/>
                             <constraint firstItem="koD-j1-oA2" firstAttribute="width" secondItem="HRf-Uo-fmi" secondAttribute="width" multiplier="0.8" id="4Ab-dP-kHK"/>
+                            <constraint firstItem="Fs7-OI-x1w" firstAttribute="centerX" secondItem="HRf-Uo-fmi" secondAttribute="centerX" id="68X-JC-J7a"/>
                             <constraint firstItem="koD-j1-oA2" firstAttribute="centerY" secondItem="HRf-Uo-fmi" secondAttribute="centerY" id="81R-Ze-rHK"/>
                             <constraint firstAttribute="trailing" secondItem="mGV-Gx-28C" secondAttribute="trailing" id="8p6-uM-CV0"/>
                             <constraint firstItem="sS7-Qa-jix" firstAttribute="height" secondItem="HRf-Uo-fmi" secondAttribute="height" multiplier="0.1" id="FJf-PE-d7X"/>
@@ -176,9 +179,12 @@
                             <constraint firstItem="mGV-Gx-28C" firstAttribute="leading" secondItem="HRf-Uo-fmi" secondAttribute="leading" id="Gqs-qg-eur"/>
                             <constraint firstItem="sS7-Qa-jix" firstAttribute="leading" secondItem="HRf-Uo-fmi" secondAttribute="leading" id="Hgc-uL-8fP"/>
                             <constraint firstItem="sS7-Qa-jix" firstAttribute="top" secondItem="mGV-Gx-28C" secondAttribute="bottom" id="Mxr-SW-c4p"/>
+                            <constraint firstAttribute="trailing" secondItem="rlJ-y9-HMy" secondAttribute="trailing" id="S0q-dh-ITC"/>
+                            <constraint firstItem="rlJ-y9-HMy" firstAttribute="leading" secondItem="HRf-Uo-fmi" secondAttribute="leading" id="SAi-4d-WN0"/>
+                            <constraint firstItem="SPg-Lm-63Y" firstAttribute="top" secondItem="rlJ-y9-HMy" secondAttribute="bottom" id="Z2v-PU-Dve"/>
                             <constraint firstAttribute="trailing" secondItem="sS7-Qa-jix" secondAttribute="trailing" id="dcg-yi-bod"/>
+                            <constraint firstItem="rlJ-y9-HMy" firstAttribute="top" secondItem="Fs7-OI-x1w" secondAttribute="bottom" constant="1" id="e3C-3n-iur"/>
                             <constraint firstItem="mGV-Gx-28C" firstAttribute="top" secondItem="x5s-vo-jNK" secondAttribute="bottom" id="k1p-X6-7wM"/>
-                            <constraint firstItem="rlJ-y9-HMy" firstAttribute="top" secondItem="Fs7-OI-x1w" secondAttribute="bottom" id="vfB-99-qxy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Frostlight Car Radar" id="rvK-aD-L03"/>
