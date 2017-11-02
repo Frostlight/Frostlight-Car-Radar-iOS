@@ -10,13 +10,15 @@ import UIKit
 import CoreLocation
 import MapKit
 import os.log
+import GoogleMobileAds
 
-class MapViewController: UIViewController, UITextFieldDelegate {
+class MapViewController: UIViewController, UITextFieldDelegate, GADBannerViewDelegate {
     // MARK: - Properties
     // Outlets
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var unitsButton: UIBarButtonItem!
+    @IBOutlet weak var adView: GADBannerView!
     
     // Local Properties
     var savedLocationAnnotation: MKPointAnnotation!
@@ -48,15 +50,24 @@ class MapViewController: UIViewController, UITextFieldDelegate {
         savedLocationAnnotation.title = "Parked Location"
         
         // Load saved location and mark annotation if it exists
-        if let location = Utility.loadLocationFromFile() {
-            savedLocationAnnotation.coordinate = location.coordinate
-            map.addAnnotation(savedLocationAnnotation)
+        if (CLLocationManager.locationServicesEnabled()) {
+            if let location = Utility.loadLocationFromFile() {
+                savedLocationAnnotation.coordinate = location.coordinate
+                map.addAnnotation(savedLocationAnnotation)
+            }
         }
         
         // Load saved TextField string
         if let text = Utility.loadTextFromFile() {
             textField.text = text
         }
+        
+        // Set ads delegate
+        adView.adUnitID = Utility.AdsMapAdID
+        adView.rootViewController = self
+        adView.load(GADRequest())
+        adView.adSize = kGADAdSizeSmartBannerPortrait
+        adView.delegate = self
     }
     
     // MARK: UITextFieldDelegate

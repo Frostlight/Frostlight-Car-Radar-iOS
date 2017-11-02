@@ -10,14 +10,16 @@ import UIKit
 import CoreLocation
 import MapKit
 import os.log
+import GoogleMobileAds
 
-class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
+class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, GADBannerViewDelegate {
     // MARK: - Properties
     // Outlets
     @IBOutlet weak var compassImageView: UIImageView! // Image of "compass"
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var unitsButton: UIBarButtonItem!
+    @IBOutlet weak var adView: GADBannerView!
     
     // Local Properties
     var locationManager: CLLocationManager!
@@ -53,6 +55,12 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
             locationManager.startUpdatingLocation()
             locationManager.startUpdatingHeading()
             locationManager.delegate = self
+            
+            // Load saved location
+            if let location = Utility.loadLocationFromFile() {
+                savedLocation = location
+                distanceLabel.text = "Initializing"
+            }
         }
         
         // Load saved imperial flag toggle (if true, units used is feet)
@@ -67,16 +75,17 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
             Utility.saveImperial(imperial: imperialFlag)
         }
         
-        // Load saved location
-        if let location = Utility.loadLocationFromFile() {
-            savedLocation = location
-            distanceLabel.text = "Initializing"
-        }
-        
         // Load saved TextField string
         if let text = Utility.loadTextFromFile() {
             textField.text = text
         }
+        
+        // Set ads delegate
+        adView.adUnitID = Utility.AdsRadarAdID
+        adView.rootViewController = self
+        adView.load(GADRequest())
+        adView.adSize = kGADAdSizeSmartBannerPortrait
+        adView.delegate = self
     }
     
     // MARK: - CLLocationManagerDelegate
@@ -146,21 +155,24 @@ class RadarViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     // MARK: - Actions
     // Save user's current location
     @IBAction func parkHereButton(_ sender: UIBarButtonItem) {
-        // Confirm Action if location already saved
-        if savedLocation != nil {
-            let saveAlert = UIAlertController(title: "Park Here", message: "Overwrite current location?", preferredStyle: UIAlertControllerStyle.alert)
-            
-            // Confirm
-            saveAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(action:UIAlertAction!) in
-                self.parkHereHelper()
-            }))
-            // Cancel
-            saveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
-            // Present confirmation window
-            present(saveAlert, animated: true, completion: nil)
-        } else {
-            parkHereHelper()
+        // Should only work if GPS is enabled and a location exists
+        if Utility.checkGPS() && userLocation != nil {
+            // Confirm Action if location already saved
+            if savedLocation != nil {
+                let saveAlert = UIAlertController(title: "Park Here", message: "Overwrite current location?", preferredStyle: UIAlertControllerStyle.alert)
+                
+                // Confirm
+                saveAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(action:UIAlertAction!) in
+                    self.parkHereHelper()
+                }))
+                // Cancel
+                saveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                // Present confirmation window
+                present(saveAlert, animated: true, completion: nil)
+            } else {
+                parkHereHelper()
+            }
         }
     }
     

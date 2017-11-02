@@ -18,8 +18,33 @@ class Utility {
     static let TextFieldArchiveURL = DocumentsDirectory.appendingPathComponent("textField") // Text field save location
     static let ImperialFlagArchiveURL = DocumentsDirectory.appendingPathComponent("imperial") // Units save location
     
+    // AdMob Application ID
+    static let AdsApplicationID = "ca-app-pub-8451127810761579~2824172456"
+    
+    // AdMob Ad IDs (Implementation)
+    //static let AdsRadarAdID = "ca-app-pub-8451127810761579/4296325789"
+    //static let AdsMapAdID = "ca-app-pub-8451127810761579/8036260246"
+    
+    // AdMob Ad IDs (For testing only)
+    static let AdsRadarAdID = "ca-app-pub-3940256099942544/6300978111"
+    static let AdsMapAdID = "ca-app-pub-3940256099942544/6300978111"
+    
     // Threshold for radar to indicate "too close" (in metres)
     static let distanceThreshold: CLLocationDistance = 15.0
+    
+    // MARK: - Check GPS
+    // Checks if GPS is active and functional or not
+    static func checkGPS() -> Bool {
+        if CLLocationManager.locationServicesEnabled() {
+            switch(CLLocationManager.authorizationStatus()) {
+            case .notDetermined, .restricted, .denied:
+                return false
+            case .authorizedAlways, .authorizedWhenInUse:
+                return true
+            }
+        }
+        return false
+    }
     
     // MARK: - Location Save/Load
     // Save a location to file
