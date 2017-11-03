@@ -72,10 +72,6 @@ class MapViewController: UIViewController, UITextFieldDelegate, GADBannerViewDel
     
     // MARK: UITextFieldDelegate
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if #available(iOS 10.0, *) {
-            os_log("Text field ended editing.", type: .default)
-        }
-        
         // Save text to file
         Utility.saveTextToFile(text: textField.text)
         

@@ -22,12 +22,12 @@ class Utility {
     static let AdsApplicationID = "ca-app-pub-8451127810761579~2824172456"
     
     // AdMob Ad IDs (Implementation)
-    //static let AdsRadarAdID = "ca-app-pub-8451127810761579/4296325789"
-    //static let AdsMapAdID = "ca-app-pub-8451127810761579/8036260246"
+    static let AdsRadarAdID = "ca-app-pub-8451127810761579/4296325789"
+    static let AdsMapAdID = "ca-app-pub-8451127810761579/8036260246"
     
     // AdMob Ad IDs (For testing only)
-    static let AdsRadarAdID = "ca-app-pub-3940256099942544/6300978111"
-    static let AdsMapAdID = "ca-app-pub-3940256099942544/6300978111"
+    //static let AdsRadarAdID = "ca-app-pub-3940256099942544/6300978111"
+    //static let AdsMapAdID = "ca-app-pub-3940256099942544/6300978111"
     
     // Threshold for radar to indicate "too close" (in metres)
     static let distanceThreshold: CLLocationDistance = 15.0
@@ -49,14 +49,7 @@ class Utility {
     // MARK: - Location Save/Load
     // Save a location to file
     static func saveLocationToFile(location: CLLocation!) {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(location, toFile: ActiveLocationArchiveURL.path)
-        if #available(iOS 10.0, *) {
-            if isSuccessfulSave {
-                os_log("Successfully saved location.", type: .default)
-            } else {
-                os_log("Failed to save location.", type: .default)
-            }
-        }
+        NSKeyedArchiver.archiveRootObject(location, toFile: ActiveLocationArchiveURL.path)
     }
     
     // Load a location from file
@@ -81,14 +74,7 @@ class Utility {
     // MARK: - TextField Save/Load
     // Save textfield contents to file
     static func saveTextToFile(text: String!) {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(text, toFile: TextFieldArchiveURL.path)
-        if #available(iOS 10.0, *) {
-            if isSuccessfulSave {
-                os_log("Successfully saved text.", type: .default)
-            } else {
-                os_log("Failed to save text.", type: .default)
-            }
-        }
+        NSKeyedArchiver.archiveRootObject(text, toFile: TextFieldArchiveURL.path)
     }
     
     // Load textfield contents from file
@@ -113,14 +99,7 @@ class Utility {
     // MARK: - Imperial Flag Save/Load
     // If true, use imperial units (feet)
     static func saveImperial(imperial: Bool!) {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(imperial, toFile: ImperialFlagArchiveURL.path)
-        if #available(iOS 10.0, *) {
-            if isSuccessfulSave {
-                os_log("Successfully saved imperial flag.", type: .default)
-            } else {
-                os_log("Failed to save imperial flag.", type: .default)
-            }
-        }
+        NSKeyedArchiver.archiveRootObject(imperial, toFile: ImperialFlagArchiveURL.path)
     }
     
     // Load imperial flag from file
